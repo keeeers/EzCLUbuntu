@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 cl_platform_id getPlatform_PD(){
-    cl_platform_id NumsPlatform;
+    cl_uint NumsPlatform;
     cl_int err;
     err = clGetPlatformIDs(0, NULL, &NumsPlatform);
     if ( 0 == NumsPlatform ){
@@ -30,14 +30,14 @@ cl_platform_id getPlatform_PD(){
 
 
 cl_device_id getDevice_PD(cl_platform_id platform){
-    cl_device_id NumsDevice;
+    cl_uint NumsDevice;
     cl_int err;
     err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL, 0, NULL, &NumsDevice);
     if ( 0 == NumsDevice ){
         printf("Found 0 Devices");
         return NULL;
     }
-    cl_device_id* devices;
+    cl_device_id* devices = (cl_device_id*)malloc(sizeof(cl_device_id) * NumsDevice);
     err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL, NumsDevice, devices, NULL);
     for (int i=0; i < NumsDevice; i++){
         printf("Device ID : %-3d ", i);
