@@ -6,7 +6,9 @@
 struct padbag{
     cl_platform_id platform;
     cl_device_id device;
-}pad;
+};
+
+extern struct padbag pad;
 
 cl_platform_id getPlatform_PD();
 cl_device_id getDevice_PD();

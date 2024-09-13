@@ -1,5 +1,8 @@
 #include "pad.h"
 #include <stdio.h>
+#include <stdlib.h>
+
+struct padbag pad;
 
 cl_platform_id getPlatform_PD(){
     cl_uint NumsPlatform;
@@ -12,7 +15,7 @@ cl_platform_id getPlatform_PD(){
     cl_platform_id* Platfroms;
     err = clGetPlatformIDs(NumsPlatform, Platfroms, NULL);
     for (int i=0; i < NumsPlatform; i++){
-        pritnf("Platform ID : %-5d ", i);
+        printf("Platform ID : %-5d ", i);
         char Name[100];
         clGetPlatformInfo(Platfroms[i], CL_PLATFORM_NAME, 100, Name, NULL);
         printf("|| Name : %s\n", Name);
@@ -48,7 +51,7 @@ cl_device_id getDevice_PD(cl_platform_id platform){
     int select = -1;
     for (; select<0 || select>=NumsDevice;){
         printf("select Device by input ID:");
-        scnaf("%d", &select);
+        scanf("%d", &select);
         if (select<0 || select>=NumsDevice){
             printf("Invaild SelectID value!\n");
         }
